@@ -1,0 +1,131 @@
+.navbarWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-light);
+    height: var(--navbar-height);
+    display: flex;
+    align-items: center;
+    transition: all var(--transition-base);
+}
+
+.container {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--space-5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+}
+
+.logoIcon {
+    color: var(--yen-green);
+}
+
+.navLinks {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+}
+
+.link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    padding: var(--space-2) 0;
+    position: relative;
+    transition: color var(--transition-fast);
+}
+
+.link:hover {
+    color: var(--text-primary);
+}
+
+.linkActive {
+    color: var(--yen-green);
+    font-weight: 600;
+}
+
+.linkActive::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--yen-green);
+    border-radius: var(--radius-full);
+}
+
+.navIcon {
+    opacity: 0.7;
+}
+
+.linkActive .navIcon {
+    opacity: 1;
+}
+
+.ctaGroup {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.signInBtn {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    padding: var(--space-2) var(--space-3);
+    transition: color var(--transition-fast);
+}
+
+.signInBtn:hover {
+    color: var(--text-primary);
+}
+
+.getStartedBtn {
+    background: var(--yen-green);
+    color: var(--text-inverse);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: all var(--transition-base);
+    box-shadow: var(--shadow-sm);
+}
+
+.getStartedBtn:hover {
+    background: var(--yen-green-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .navLinks {
+        display: none;
+    }
+
+    .ctaGroup {
+        gap: var(--space-2);
+    }
+}

@@ -3,16 +3,18 @@ import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import HeroSection from '../components/landing/HeroSection';
 import FeaturesSection from '../components/landing/FeaturesSection';
+import PortalsSection from '../components/landing/PortalsSection';
 
 export default function Home() {
     return (
-        <div className="flex flex-col min-h-screen">
+        <>
             <Navbar />
             <main>
                 <HeroSection />
+                <PortalsSection />
                 <FeaturesSection />
             </main>
             <Footer />
-        </div>
+        </>
     );
 }

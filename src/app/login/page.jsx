@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Navbar from '../../components/layout/Navbar';
 import Footer from '../../components/layout/Footer';
 import { Lock, Mail, ArrowRight, AlertCircle } from 'lucide-react';
+import styles from './Login.module.css';
 
 const LoginPage = () => {
     const router = useRouter();
@@ -52,73 +53,49 @@ const LoginPage = () => {
     };
 
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className={styles.pageWrapper}>
             <Navbar />
 
-            <main className="flex-grow flex items-center justify-center" style={{ background: 'var(--bg-subtle)', padding: '2rem' }}>
-                <div className="card" style={{ maxWidth: '400px', width: '100%', padding: '2rem' }}>
-                    <div className="text-center" style={{ marginBottom: '2rem' }}>
-                        <h1 className="font-bold" style={{ fontSize: '1.75rem', marginBottom: '0.5rem' }}>Welcome Back</h1>
-                        <p style={{ color: 'var(--text-secondary)' }}>Sign in to access your portal</p>
+            <main className={styles.main}>
+                <div className={styles.loginCard}>
+                    <div className={styles.header}>
+                        <h1 className={styles.title}>Welcome Back</h1>
+                        <p className={styles.subtitle}>Sign in to access your portal</p>
                     </div>
 
                     {error && (
-                        <div style={{
-                            background: '#FEF2F2',
-                            color: '#DC2626',
-                            padding: '0.75rem',
-                            borderRadius: 'var(--radius-md)',
-                            marginBottom: '1.5rem',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '0.5rem',
-                            fontSize: '0.875rem'
-                        }}>
+                        <div className={styles.errorAlert}>
                             <AlertCircle size={16} />
                             {error}
                         </div>
                     )}
 
-                    <form onSubmit={handleLogin} className="flex flex-col gap-4">
-                        <div>
-                            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: 500 }}>Email Address</label>
-                            <div style={{ position: 'relative' }}>
-                                <Mail size={20} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
+                    <form onSubmit={handleLogin} className={styles.form}>
+                        <div className={styles.inputGroup}>
+                            <label className={styles.label}>Email Address</label>
+                            <div className={styles.inputWrapper}>
+                                <Mail size={18} className={styles.inputIcon} />
                                 <input
                                     type="email"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     placeholder="name@university.edu"
-                                    style={{
-                                        width: '100%',
-                                        padding: '0.75rem 0.75rem 0.75rem 2.5rem',
-                                        border: '1px solid var(--border)',
-                                        borderRadius: 'var(--radius-md)',
-                                        outline: 'none',
-                                        fontSize: '1rem'
-                                    }}
+                                    className={styles.input}
                                     required
                                 />
                             </div>
                         </div>
 
-                        <div style={{ marginBottom: '1rem' }}>
-                            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: 500 }}>Password</label>
-                            <div style={{ position: 'relative' }}>
-                                <Lock size={20} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
+                        <div className={styles.inputGroup}>
+                            <label className={styles.label}>Password</label>
+                            <div className={styles.inputWrapper}>
+                                <Lock size={18} className={styles.inputIcon} />
                                 <input
                                     type="password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     placeholder="••••••••"
-                                    style={{
-                                        width: '100%',
-                                        padding: '0.75rem 0.75rem 0.75rem 2.5rem',
-                                        border: '1px solid var(--border)',
-                                        borderRadius: 'var(--radius-md)',
-                                        outline: 'none',
-                                        fontSize: '1rem'
-                                    }}
+                                    className={styles.input}
                                     required
                                 />
                             </div>
@@ -126,17 +103,17 @@ const LoginPage = () => {
 
                         <button
                             type="submit"
-                            className="btn btn-primary"
+                            className={styles.submitBtn}
                             disabled={loading}
-                            style={{ width: '100%', padding: '0.875rem', fontSize: '1rem' }}
                         >
-                            {loading ? 'Signing in...' : 'Sign In'} <ArrowRight size={18} style={{ marginLeft: '0.5rem' }} />
+                            {loading ? 'Signing in...' : 'Sign In'}
+                            {!loading && <ArrowRight size={16} />}
                         </button>
                     </form>
 
-                    <div className="text-center" style={{ marginTop: '1.5rem', fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
-                        <p>Demo Credentials:</p>
-                        <div className="flex flex-col gap-1 mt-2" style={{ fontSize: '0.8rem', opacity: 0.8 }}>
+                    <div className={styles.demoBox}>
+                        <p className={styles.demoTitle}>Demo Credentials</p>
+                        <div className={styles.demoList}>
                             <span>Student: student@demo.com</span>
                             <span>Faculty: faculty@demo.com</span>
                             <span>Admin: admin@demo.com</span>
