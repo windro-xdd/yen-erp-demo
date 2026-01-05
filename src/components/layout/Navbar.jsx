@@ -32,13 +32,16 @@ const Navbar = () => {
                 </Link>
 
                 {/* Desktop Nav */}
-                <div className="flex items-center gap-8">
-                    <Link href="/" className="text-secondary hover:text-primary">Features</Link>
-                    <Link href="/" className="text-secondary hover:text-primary">About</Link>
-                    <Link href="/" className="text-secondary hover:text-primary">Contact</Link>
-
+                <div className="flex items-center gap-4">
+                    <Link href="/student/dashboard" className="text-sm font-medium hover:text-primary">
+                        Student Demo
+                    </Link>
+                    <Link href="/faculty/dashboard" className="text-sm font-medium hover:text-primary">
+                        Faculty Demo
+                    </Link>
+                    <div style={{ width: '1px', height: '24px', backgroundColor: 'var(--border)', margin: '0 0.5rem' }}></div>
                     <Link href="/login" className="btn btn-primary">
-                        Student / Staff Login
+                        Login
                     </Link>
                 </div>
             </div>
