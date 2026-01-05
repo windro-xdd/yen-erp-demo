@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 
 const HeroSection = () => {
@@ -50,7 +50,7 @@ const HeroSection = () => {
                     </p>
 
                     <div className="flex justify-center gap-4" style={{ marginBottom: '3rem' }}>
-                        <Link to="/login" className="btn btn-primary" style={{ padding: '0.75rem 2rem', fontSize: '1.1rem' }}>
+                        <Link href="/login" className="btn btn-primary" style={{ padding: '0.75rem 2rem', fontSize: '1.1rem' }}>
                             Get Started <ArrowRight size={20} style={{ marginLeft: '0.5rem' }} />
                         </Link>
                         <button className="btn btn-outline" style={{ padding: '0.75rem 2rem', fontSize: '1.1rem' }}>
