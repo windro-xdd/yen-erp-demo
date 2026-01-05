@@ -1,75 +1,85 @@
+"use client";
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, CheckCircle } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Sparkles } from 'lucide-react';
+import styles from './HeroSection.module.css';
 
 const HeroSection = () => {
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.12,
+                delayChildren: 0.1
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 20 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.6,
+                ease: [0.16, 1, 0.3, 1]
+            }
+        }
+    };
+
+    const stats = [
+        { value: '15,000+', label: 'Students' },
+        { value: '600+', label: 'Faculty' },
+        { value: '125+', label: 'Programs' },
+        { value: 'A+', label: 'NAAC Grade' },
+    ];
+
     return (
-        <section style={{
-            padding: '8rem 0 6rem',
-            background: 'linear-gradient(to bottom, white, var(--bg-subtle))',
-            textAlign: 'center'
-        }}>
+        <section className={styles.section}>
             <div className="container">
-                <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-                    <div style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '0.5rem',
-                        padding: '0.5rem 1rem',
-                        background: 'rgba(79, 70, 229, 0.1)',
-                        color: 'var(--primary)',
-                        borderRadius: '100px',
-                        fontSize: '0.875rem',
-                        fontWeight: 600,
-                        marginBottom: '1.5rem'
-                    }}>
-                        <span style={{ display: 'flex', width: '8px', height: '8px', borderRadius: '50%', background: 'currentColor' }}></span>
-                        New Academic Year 2026 Ready
-                    </div>
+                <motion.div
+                    className={styles.heroContent}
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                >
+                    <motion.div variants={itemVariants} className={styles.badge}>
+                        <Sparkles size={16} />
+                        Yenepoya University ERP
+                    </motion.div>
 
-                    <h1 style={{
-                        fontSize: '3.5rem',
-                        lineHeight: 1.1,
-                        letterSpacing: '-0.02em',
-                        fontWeight: 800,
-                        marginBottom: '1.5rem',
-                        color: 'var(--text-main)'
-                    }}>
-                        Manage Your University <br />
-                        <span style={{ color: 'var(--primary)' }}>With Absolute Ease</span>
-                    </h1>
+                    <motion.h1 variants={itemVariants} className={styles.title}>
+                        One Platform for<br />
+                        <span className={styles.highlight}>Academic Excellence</span>
+                    </motion.h1>
 
-                    <p style={{
-                        fontSize: '1.25rem',
-                        color: 'var(--text-secondary)',
-                        marginBottom: '2.5rem',
-                        lineHeight: 1.6
-                    }}>
-                        The all-in-one ERP solution for modern educational institutions.
-                        Streamline administration, student tracking, and faculty management in one unified platform.
-                    </p>
+                    <motion.p variants={itemVariants} className={styles.description}>
+                        A unified digital ecosystem connecting students, faculty, and administration.
+                        Streamline learning, simplify management, and empower growth.
+                    </motion.p>
 
-                    <div className="flex justify-center gap-4" style={{ marginBottom: '3rem' }}>
-                        <Link href="/login" className="btn btn-primary" style={{ padding: '0.75rem 2rem', fontSize: '1.1rem' }}>
-                            Get Started <ArrowRight size={20} style={{ marginLeft: '0.5rem' }} />
+                    <motion.div variants={itemVariants} className={styles.actions}>
+                        <Link href="/login" className={styles.primaryBtn}>
+                            Access Portal
+                            <ArrowRight size={18} />
                         </Link>
-                        <button className="btn btn-outline" style={{ padding: '0.75rem 2rem', fontSize: '1.1rem' }}>
-                            View Demo
-                        </button>
-                    </div>
+                        <Link href="#features" className={styles.secondaryBtn}>
+                            Explore Features
+                        </Link>
+                    </motion.div>
 
-                    <div className="flex justify-center gap-8" style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
-                        <div className="flex items-center gap-2">
-                            <CheckCircle size={16} className="text-primary" /> 99.9% Uptime
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <CheckCircle size={16} className="text-primary" /> Secure & Compliant
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <CheckCircle size={16} className="text-primary" /> 24/7 Support
-                        </div>
-                    </div>
-                </div>
+                    <motion.div variants={itemVariants} className={styles.statsRow}>
+                        {stats.map((stat, index) => (
+                            <div key={index} className={styles.stat}>
+                                <div className={styles.statValue}>{stat.value}</div>
+                                <div className={styles.statLabel}>{stat.label}</div>
+                            </div>
+                        ))}
+                    </motion.div>
+                </motion.div>
             </div>
         </section>
     );

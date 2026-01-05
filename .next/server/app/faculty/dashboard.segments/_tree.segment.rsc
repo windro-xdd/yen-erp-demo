@@ -1,0 +1,3 @@
+:HL["/_next/static/chunks/1cfdd6cab03ff232.css","style"]
+:HL["/_next/static/chunks/2f07954a3581f914.css","style"]
+0:{"buildId":"FNAi756V72-TeEWAmArfA","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"faculty","paramType":null,"paramKey":"faculty","hasRuntimePrefetch":false,"slots":{"children":{"name":"dashboard","paramType":null,"paramKey":"dashboard","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}

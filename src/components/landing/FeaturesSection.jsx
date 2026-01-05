@@ -1,59 +1,89 @@
+"use client";
 import React from 'react';
-import { Users, BookOpen, ShieldCheck } from 'lucide-react';
+import { Users, BookOpen, ShieldCheck, BarChart3, Calendar, CreditCard } from 'lucide-react';
+import { motion } from 'framer-motion';
+import styles from './FeaturesSection.module.css';
 
-const FeatureCard = ({ icon: Icon, title, description }) => (
-    <div className="card">
-        <div style={{
-            width: '48px',
-            height: '48px',
-            background: 'var(--bg-subtle)',
-            borderRadius: '12px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginBottom: '1rem',
-            color: 'var(--primary)'
-        }}>
-            <Icon size={24} />
-        </div>
-        <h3 className="font-bold" style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>{title}</h3>
-        <p style={{ color: 'var(--text-secondary)' }}>{description}</p>
-    </div>
-);
+const FeatureCard = ({ icon: Icon, title, description, variant = '' }) => {
+    return (
+        <motion.div
+            className={`${styles.card} ${variant ? styles[variant] : ''}`}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        >
+            <div className={styles.cardIcon}>
+                <Icon size={24} />
+            </div>
+            <h3 className={styles.cardTitle}>{title}</h3>
+            <p className={styles.cardDesc}>{description}</p>
+        </motion.div>
+    );
+};
 
 const FeaturesSection = () => {
-    return (
-        <section style={{ padding: '6rem 0', background: 'var(--bg-surface)' }}>
-            <div className="container">
-                <div className="text-center" style={{ marginBottom: '4rem' }}>
-                    <h2 style={{ fontSize: '2.5rem', fontWeight: 700, marginBottom: '1rem' }}>
-                        Everything You Need
-                    </h2>
-                    <p style={{ fontSize: '1.125rem', color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto' }}>
-                        Tailored tools for every role in your institution. From admissions to alumni, we have got you covered.
-                    </p>
-                </div>
+    const features = [
+        {
+            icon: Users,
+            title: "Student Management",
+            description: "Complete student lifecycle from admission to graduation with automated workflows.",
+            variant: "cardLarge"
+        },
+        {
+            icon: BookOpen,
+            title: "Academic Engine",
+            description: "Curriculum design, course scheduling, and assignment management."
+        },
+        {
+            icon: Calendar,
+            title: "Smart Scheduling",
+            description: "Automated timetables with conflict detection and room allocation."
+        },
+        {
+            icon: CreditCard,
+            title: "Fee Management",
+            description: "Online payments, receipts, and financial reporting in one place."
+        },
+        {
+            icon: BarChart3,
+            title: "Analytics Dashboard",
+            description: "Real-time insights into academic performance and institutional metrics.",
+            variant: "cardLarge"
+        },
+        {
+            icon: ShieldCheck,
+            title: "Enterprise Security",
+            description: "Role-based access with audit trails and data encryption."
+        }
+    ];
 
-                <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                    gap: '2rem'
-                }}>
-                    <FeatureCard
-                        icon={Users}
-                        title="Student Management"
-                        description="Track attendance, grades, and academic progress with our comprehensive student portal."
-                    />
-                    <FeatureCard
-                        icon={BookOpen}
-                        title="Faculty Tools"
-                        description="Empower teachers with easy grading, lesson planning, and direct communication channels."
-                    />
-                    <FeatureCard
-                        icon={ShieldCheck}
-                        title="Admin Control"
-                        description="Full oversight of university operations, user roles, and system configurations."
-                    />
+    return (
+        <section id="features" className={styles.section}>
+            <div className={styles.container}>
+                <motion.div
+                    className={styles.heading}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                >
+                    <h2 className={styles.title}>Everything You Need</h2>
+                    <p className={styles.subtitle}>
+                        A complete suite of tools to manage modern academic operations.
+                    </p>
+                </motion.div>
+
+                <div className={styles.bentoGrid}>
+                    {features.map((feature, index) => (
+                        <FeatureCard
+                            key={index}
+                            icon={feature.icon}
+                            title={feature.title}
+                            description={feature.description}
+                            variant={feature.variant}
+                        />
+                    ))}
                 </div>
             </div>
         </section>
