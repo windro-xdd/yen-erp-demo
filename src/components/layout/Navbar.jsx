@@ -3,7 +3,7 @@ import React, { useEffect, useState, Suspense } from 'react';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { GraduationCap, LayoutDashboard, Calendar, CreditCard, ClipboardList, Users, Settings, BookOpen } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Navbar.module.css';
 
 const NavbarContent = () => {
@@ -72,13 +72,16 @@ const NavbarContent = () => {
         return (
             <Link
                 href={`${href}?view=${view}`}
-                className={`${styles.link} ${isActive ? styles.linkActive : ''}`}
+                className={`${isMobileMenuOpen ? styles.mobileNavLink : styles.link} ${isActive ? styles.linkActive : ''}`}
+                onClick={() => setIsMobileMenuOpen(false)}
             >
                 <Icon size={16} className={styles.navIcon} />
                 {children}
             </Link>
         );
     };
+
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     return (
         <motion.header
@@ -93,17 +96,16 @@ const NavbarContent = () => {
                     <span>Yenepoya <span style={{ color: 'var(--yen-green)' }}>ERP</span></span>
                 </Link>
 
+                {/* Desktop Nav */}
                 <nav className={styles.navLinks}>
                     {getNavLinks()}
                 </nav>
 
+                {/* Desktop CTA */}
                 <div className={styles.ctaGroup}>
                     {role ? (
                         <>
-                            <Link
-                                href={`/${role}/dashboard`}
-                                className={styles.signInBtn}
-                            >
+                            <Link href={`/${role}/dashboard`} className={styles.signInBtn}>
                                 {role.charAt(0).toUpperCase() + role.slice(1)} Dashboard
                             </Link>
                             <button
@@ -119,16 +121,77 @@ const NavbarContent = () => {
                         </>
                     ) : (
                         <>
-                            <Link href="/login" className={styles.signInBtn}>
-                                Sign in
-                            </Link>
-                            <Link href="/login" className={styles.getStartedBtn}>
-                                Get Started
-                            </Link>
+                            <Link href="/login" className={styles.signInBtn}>Sign in</Link>
+                            <Link href="/login" className={styles.getStartedBtn}>Get Started</Link>
                         </>
                     )}
                 </div>
+
+                {/* Mobile Toggle */}
+                <button
+                    className={styles.mobileToggle}
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    aria-label="Toggle menu"
+                >
+                    <div className={`${styles.bar} ${isMobileMenuOpen ? styles.open : ''}`} />
+                    <div className={`${styles.bar} ${isMobileMenuOpen ? styles.open : ''}`} />
+                    <div className={`${styles.bar} ${isMobileMenuOpen ? styles.open : ''}`} />
+                </button>
             </div>
+
+            {/* Mobile Menu Dropdown */}
+            <AnimatePresence>
+                {isMobileMenuOpen && (
+                    <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className={styles.mobileMenu}
+                    >
+                        <div className={styles.menuContent}>
+                            {!isDashboard ? (
+                                <>
+                                    <Link href="/#features" className={styles.mobileNavLink} onClick={() => setIsMobileMenuOpen(false)}>Features</Link>
+                                    <Link href="/#solutions" className={styles.mobileNavLink} onClick={() => setIsMobileMenuOpen(false)}>Solutions</Link>
+                                    <Link href="/#pricing" className={styles.mobileNavLink} onClick={() => setIsMobileMenuOpen(false)}>Pricing</Link>
+                                    <Link href="/#about" className={styles.mobileNavLink} onClick={() => setIsMobileMenuOpen(false)}>About</Link>
+                                </>
+                            ) : (
+                                <>
+                                    {getNavLinks()}
+                                </>
+                            )}
+
+                            <div className={styles.divider} />
+
+                            {role ? (
+                                <>
+                                    <button
+                                        onClick={() => {
+                                            localStorage.removeItem('token');
+                                            localStorage.removeItem('role');
+                                            window.location.href = '/login';
+                                        }}
+                                        className={styles.mobileNavBtn}
+                                        style={{ color: '#DC2626', background: 'rgba(220, 38, 38, 0.1)' }}
+                                    >
+                                        Logout
+                                    </button>
+                                </>
+                            ) : (
+                                <Link
+                                    href="/login"
+                                    className={styles.mobileNavBtn}
+                                    style={{ background: 'var(--yen-green)', color: 'white' }}
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                    Login / Get Started
+                                </Link>
+                            )}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </motion.header>
     );
 };

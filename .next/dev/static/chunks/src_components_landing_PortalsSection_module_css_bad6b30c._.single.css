@@ -43,6 +43,15 @@
   transition: all var(--transition-base);
   cursor: pointer;
   display: flex;
+  overflow: hidden;
+}
+
+@media (max-width: 480px) {
+  .PortalsSection-module__eHOaHW__card {
+    text-align: left;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 .PortalsSection-module__eHOaHW__card:hover {

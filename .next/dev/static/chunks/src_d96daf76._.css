@@ -119,13 +119,96 @@
   transform: translateY(-1px);
 }
 
+.Navbar-module__cRh5nW__mobileToggle {
+  padding: var(--space-2);
+  cursor: pointer;
+  z-index: 1001;
+  background: none;
+  border: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  display: none;
+}
+
+.Navbar-module__cRh5nW__bar {
+  background-color: var(--text-primary);
+  border-radius: 4px;
+  width: 24px;
+  height: 2px;
+  transition: all .3s;
+  position: relative;
+}
+
+.Navbar-module__cRh5nW__bar.Navbar-module__cRh5nW__open:first-child {
+  transform: translateY(7px)rotate(45deg);
+}
+
+.Navbar-module__cRh5nW__bar.Navbar-module__cRh5nW__open:nth-child(2) {
+  opacity: 0;
+}
+
+.Navbar-module__cRh5nW__bar.Navbar-module__cRh5nW__open:nth-child(3) {
+  transform: translateY(-7px)rotate(-45deg);
+}
+
+.Navbar-module__cRh5nW__mobileMenu {
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-light);
+  box-shadow: var(--shadow-md);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+}
+
+.Navbar-module__cRh5nW__menuContent {
+  padding: var(--space-5);
+  gap: var(--space-4);
+  flex-direction: column;
+  display: flex;
+}
+
+.Navbar-module__cRh5nW__mobileNavLink {
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  text-align: center;
+  color: var(--text-secondary);
+  background: var(--bg-tertiary);
+  font-weight: 500;
+  display: block;
+}
+
+.Navbar-module__cRh5nW__mobileNavBtn {
+  width: 100%;
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  text-align: center;
+  margin-top: var(--space-2);
+  font-weight: 600;
+}
+
+.Navbar-module__cRh5nW__divider {
+  background: var(--border-light);
+  height: 1px;
+  margin: var(--space-2) 0;
+}
+
 @media (max-width: 768px) {
-  .Navbar-module__cRh5nW__navLinks {
+  .Navbar-module__cRh5nW__container {
+    padding: 0 var(--space-4);
+  }
+
+  .Navbar-module__cRh5nW__navLinks, .Navbar-module__cRh5nW__ctaGroup {
     display: none;
   }
 
-  .Navbar-module__cRh5nW__ctaGroup {
-    gap: var(--space-2);
+  .Navbar-module__cRh5nW__mobileToggle {
+    display: flex;
   }
 }
 
@@ -435,6 +518,15 @@
   border: 1px solid var(--border-light);
   border-radius: var(--radius-lg);
   padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+  width: 100%;
+  overflow: hidden;
+}
+
+@media (max-width: 480px) {
+  .Dashboard-module__5cuSHa__contentCard {
+    padding: var(--space-4);
+  }
 }
 
 .Dashboard-module__5cuSHa__cardTitle {
@@ -933,22 +1025,69 @@
   font-size: .9375rem;
 }
 
-.Dashboard-module__5cuSHa__scheduleGrid {
-  background: var(--border-light);
-  border-radius: var(--radius-md);
-  grid-template-columns: 80px repeat(5, 1fr);
-  gap: 1px;
-  display: grid;
-  overflow: hidden;
-}
+@media (max-width: 768px) {
+  .Dashboard-module__5cuSHa__header {
+    align-items: flex-start;
+    gap: var(--space-4);
+    flex-direction: column;
+  }
 
-.Dashboard-module__5cuSHa__timeHeader {
-  background: var(--bg-tertiary);
-  padding: var(--space-3);
-  color: var(--text-tertiary);
-  text-align: center;
-  font-size: .75rem;
-  font-weight: 600;
+  .Dashboard-module__5cuSHa__pageTitle {
+    font-size: 1.75rem;
+  }
+
+  .Dashboard-module__5cuSHa__sidebar {
+    width: 100%;
+    margin-bottom: var(--space-6);
+    padding: var(--space-2);
+    gap: var(--space-2);
+    scrollbar-width: none;
+    background: none;
+    border: none;
+    display: flex;
+    position: relative;
+    top: 0;
+    overflow-x: auto;
+  }
+
+  .Dashboard-module__5cuSHa__sidebar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .Dashboard-module__5cuSHa__navGroup {
+    flex-direction: row;
+    width: max-content;
+  }
+
+  .Dashboard-module__5cuSHa__navItem {
+    white-space: nowrap;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    padding: var(--space-2) var(--space-4);
+  }
+
+  .Dashboard-module__5cuSHa__main {
+    padding: calc(var(--navbar-height)  + var(--space-4)) var(--space-4) var(--space-8);
+  }
+
+  .Dashboard-module__5cuSHa__searchBox {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .Dashboard-module__5cuSHa__scheduleGrid {
+    gap: var(--space-2);
+    background: none;
+    flex-direction: column;
+    display: flex;
+  }
+
+  .Dashboard-module__5cuSHa__timeHeader {
+    text-align: left;
+    color: var(--yen-green);
+    background: none;
+    padding-left: 0;
+  }
 }
 
 .Dashboard-module__5cuSHa__dayCell {

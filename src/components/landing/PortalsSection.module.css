@@ -42,6 +42,15 @@
     padding: var(--space-5);
     transition: all var(--transition-base);
     cursor: pointer;
+    overflow: hidden;
+}
+
+@media (max-width: 480px) {
+    .card {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
 }
 
 .card:hover {

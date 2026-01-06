@@ -6,6 +6,7 @@ import Navbar from '../../../components/layout/Navbar';
 import Footer from '../../../components/layout/Footer';
 import { BookOpen, Users, ChevronRight, Star, Bell, FileText, Calendar } from 'lucide-react';
 import styles from '../../../styles/Dashboard.module.css';
+import FacultyAttendancePanel from '../../../components/attendance/FacultyAttendancePanel';
 
 const FacultyDashboardContent = () => {
     const router = useRouter();
@@ -278,10 +279,16 @@ const FacultyDashboardContent = () => {
                             <div className={styles.cardHeaderFlex}>
                                 <h2 className={styles.cardTitle}>
                                     Attendance - {selectedCourse?.name || courses[0]?.name || 'Select Course'}
+
                                 </h2>
                                 <span className={styles.badge} style={{ background: 'rgba(46, 125, 50, 0.1)', color: 'var(--yen-green)' }}>
                                     {currentBatch?.name}
                                 </span>
+                            </div>
+
+                            {/* [Attendance System] */}
+                            <div className="mb-8">
+                                <FacultyAttendancePanel />
                             </div>
                             <div className={styles.attendanceControls}>
                                 <div className={styles.inputGroupSmall}>

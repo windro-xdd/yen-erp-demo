@@ -7,6 +7,7 @@ import Footer from '../../../components/layout/Footer';
 import { User, Book, Clock, Award, CheckCircle2, Calendar, CreditCard, ClipboardList, Info } from 'lucide-react';
 import styles from '../../../styles/Dashboard.module.css';
 import Modal from '../../../components/shared/Modal';
+import StudentAttendanceScanner from '../../../components/attendance/StudentAttendanceScanner';
 
 const StudentDashboardContent = () => {
     const router = useRouter();
@@ -144,6 +145,11 @@ const StudentDashboardContent = () => {
                             <StatCard title="Registration ID" value={student.id} icon={User} type="blue" />
                             <StatCard title="Attendance Avg" value={`${student.attendance}%`} icon={Clock} type="green" />
                             <StatCard title="Current CGPA" value={student.cgpa} icon={Award} type="orange" />
+                        </div>
+
+                        {/* Attendance Scanner Widget */}
+                        <div className="mb-8">
+                            <StudentAttendanceScanner />
                         </div>
 
                         <div className={styles.contentSplit}>
